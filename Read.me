@@ -1,0 +1,51 @@
+1. Import Required Libraries:
+ Libraries like requests, BeautifulSoup, pandas, spacy, syllapy, and TextBlob are
+imported to handle web scraping, text analysis, and data processing.
+
+2. Loading and Reading Excel Files:
+ The input Excel file (Input.xlsx) is read using pandas to extract URLs for web
+scraping.
+ The program loops through each row in the Excel file, sends HTTP requests to the
+URLs, and extracts relevant data (like title, date, and content) using BeautifulSoup.
+
+3. Text Extraction from Web Pages:
+ For each URL, the script uses BeautifulSoup to parse the HTML and extract content
+such as the title, date, and body text. If the elements aren't found, default messages
+like "Title not found" are returned.
+4. Saving Extracted Data to Text Files:
+ Each web page's extracted data is written to a .txt file using Python's open() function.
+The filename is based on the URL_ID from the Excel file.
+
+5. Natural Language Processing and Text Analysis:
+ Using spaCy, syllapy, and TextBlob, various linguistic metrics are calculated from the
+text files. These metrics include:
+▪ Sentiment Analysis (positive/negative scores, polarity, subjectivity)
+▪ Readability (average sentence length, Fog Index, percentage of complex
+words)
+▪ Linguistic Features (syllables per word, word count, personal pronouns)
+
+6. Storing Results in DataFrames:
+ A pandas DataFrame is built from the extracted metrics. Each row corresponds to a
+text file, and each column holds a calculated metric.
+
+7. Merging Results with Base Data:
+ After generating the analysis, the results are merged with an existing structure
+(Output Data Structure.xlsx) containing URL_ID and URL. The final results are
+saved into an Excel file (Final Output.xlsx).
+
+Explanation of the Approach
+• Web Scraping: You use the requests library to retrieve web pages and BeautifulSoup to
+extract specific HTML elements (like the title, date, and content). This allows you to gather
+unstructured data for analysis.
+• Text Processing: For the textual data, you leverage several techniques:
+o Sentiment Analysis: The TextBlob library is used to compute the text's polarity
+(positive/negative sentiment) and subjectivity scores.
+
+o Linguistic Features: Functions like calculate_avg_sentence_length,
+calculate_percentage_of_complex_words, and others extract various readability and
+complexity metrics using spaCy and syllapy.
+
+• Data Handling: You integrate Excel inputs and outputs using pandas. This ensures the
+processed text data is saved in a structured, easily accessible format.
+• Automation: The script processes multiple URLs, extracts data, performs complex analysis,
+and then saves the results into multiple files, making it reusable for many web pages.
